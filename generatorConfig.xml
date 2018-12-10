@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--mysql 连接数据库jar 这里选择自己本地位置-->
+    <classPathEntry location="C:/Users/Vivian/.IntelliJIdea2017.2/config/jdbc-drivers/MySQL Connector/J/5.1.45/mysql-connector-java-5.1.45-bin.jar" />
+    <context id="testTables" targetRuntime="MyBatis3">
+        <property name="suppressTypeWarnings" value="true"/>
+
+        <!-- generate entity时，生成hashcode和equals方法 -->
+        <!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" /> -->
+        <!-- generate entity时，生成serialVersionUID -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 这个插件只会增加字符串字段映射到一个JDBC字符的方法 -->
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
+        <!-- genenat entity时,生成toString -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库配置文件的url是不能直接拷贝过来用的，需要把&换成'&amp;' -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://47.93.232.245:3306/sportsNews?useUnicode=true&amp;charaterEncoding=utf-8&amp;allowMultiQueries=true"
+                        userId="root" password="1161260131">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- generate Model -->
+        <javaModelGenerator targetPackage="com.news.dao.user"
+                            targetProject="${project.build.directory}/../../sports/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="isMergeable" value="false"/>
+        </javaModelGenerator>
+
+        <!-- generate xml -->
+        <sqlMapGenerator targetPackage="mappers"
+                         targetProject="${project.build.directory}/../src/main/resources/mybatis">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- generate Mapper -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.news.dao.user"
+                             targetProject="${project.build.directory}/../src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--
+          catalog CDATA #IMPLIED
+          schema CDATA #IMPLIED
+          tableName CDATA #REQUIRED
+          alias CDATA #IMPLIED
+          domainObjectName CDATA #IMPLIED
+          enableInsert CDATA #IMPLIED
+          enableSelectByPrimaryKey CDATA #IMPLIED
+          enableUpdateByPrimaryKey CDATA #IMPLIED
+          enableDeleteByPrimaryKey CDATA #IMPLIED
+          enableCountByExample CDATA #IMPLIED
+          enableUpdateByExample CDATA #IMPLIED
+          enableDeleteByExample CDATA #IMPLIED
+          enableSelectByExample CDATA #IMPLIED
+          selectByExampleQueryId CDATA #IMPLIED
+          selectByPrimaryKeyQueryId CDATA #IMPLIED
+          modelType CDATA #IMPLIED
+          escapeWildcards CDATA #IMPLIED
+          delimitIdentifiers CDATA #IMPLIED
+          delimitAllColumns CDATA #IMPLIED
+         -->
+        <!--database tables used to generate-->
+        <table schema="" tableName="user" domainObjectName="UserEntity" modelType="flat"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>

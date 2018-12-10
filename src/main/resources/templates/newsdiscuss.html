@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <title>新闻评论</title>
+    <style>a{TEXT-DECORATION:none}</style>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../static/plugin/uEditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../static/plugin/uEditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="../static/plugin/uEditor/lang/zh-cn/zh-cn.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/NewsDiscuss.css">
+</head>
+<body>
+<div  class="right">
+    <div class="lr"  >
+        <a href="log.html">登录</a>
+        <a href="register.html">注册</a>
+    </div>
+
+    <div class="mo"  >
+        <a href="news.html">新闻</a>
+        <a href="forum.html">论坛</a>
+        <a href="contact.html">联系我们</a>
+    </div>
+</div>
+
+
+    <div class="content">
+
+    </div>
+
+<div class="newsDiscuss">
+    <p>网友评论:</p>
+    <ul class="newsDiscuss_list">
+
+    </ul>
+</div>
+
+<div class="pageNation">
+    <button id="previous">上一页</button>
+    <ul>
+        <li class="page_first"><a href="javascript:void(0)"></a></li>
+        <li class="active"><a href="javascript:void(0)"></a></li>
+        <li class="page_last"><a href="javascript:void(0)"></a></li>
+    </ul>
+    <button id="next">下一页</button>
+</div>
+
+
+    <div class="SetDiscuss">
+        <textarea id="discuss" rows="5" cols="130">说点什么吧?</textarea>
+        <input type="submit" value="发表" id="goSubmit">
+    </div>
+
+
+
+<div class="foot">
+    <div class="first">
+        <p>心悦客服</p>
+        <div class="f">
+            <p>热线:18628395678</p>
+            <p>邮箱:123456789@qq.com</p>
+            <p>qq  :1101625235</p>
+            <p>微信:123456789</p>
+        </div>
+    </div>
+    <div class="second">
+        <p>关于心悦</p>
+        <div class="s">
+            <p><a href="/templates/contact.html">关于我们</a></p>
+            <p><a href="/templates/contact.html">免责声明</a></p>
+            <p><a href="/templates/contact.html">用户协议</a></p>
+        </div>
+    </div>
+    <div class="third" >
+        <div  class="w">
+            <img style="height:140px;width: 140px" src="../static/images/shop/wei.jpg">
+            <span>公众号</span>
+        </div>
+        <div class="x">
+            <img style="height:140px;width: 140px" src="../static/images/shop/xin.jpg">
+            <span>微信群</span>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="bu">
+    <img src="../static/images/shop/bu.png">
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        var param=window.location.href;
+        var newsId=param.split('=');
+        var getData=function (data) {
+            $.ajax({
+                type:'post',
+                url:'http://localhost:8081/news/discuss',
+                data:{
+                    "id":data
+                },
+                success:function (response) {
+                    console.log(response);
+
+                    $('.content').append("<p>"+response.news+"</p><p class='text-right'>"+response.adminName+"&nbsp;&nbsp;&nbsp;&nbsp;<span>"+response.newsTime+"</span></p>");
+
+                }
+            })
+        }
+        getData(newsId[1]);
+
+        var page=1;  //当前页
+        var total;   //总页数
+        var getNewsDiscuss=function(page,newsId){
+            $.ajax({
+                type:'post',
+                url:'http://localhost:8081/news/discusspn',
+                data:{
+                    pn:page,
+                    id:newsId
+                },
+                success:function(res){
+                    console.log(res);
+                    total=res.code;
+                    console.log("page:"+page+",total:"+total);
+                    if(page===total){
+                        if(total<2) {
+                            $('#previous').attr('disabled',true);
+                        } else{
+                            $('#previous').attr('disabled',false);
+                        }
+                        $('#next').attr('disabled',true);
+                        console.log("total")
+                    }else if(page===1){
+                        if(total<2){
+                            console.log("1");
+                            $('#next').attr('disabled',true);
+                        }else {
+                            $('#next').attr('disabled',false);
+                        }
+                        $('#previous').attr('disabled',true);
+                    }else {
+                        $('#next').attr('disabled',false);
+                        $('#previous').attr('disabled',false);
+                    }
+                    getPage(total);
+                    var data=res.result;
+                    var str = "";
+                    for (var i=0;i<data.length;i++){
+                        str = str+'<li class="'+data[i].userName+'">'+data[i].discuss+'<p>'+data[i].userName+'&nbsp;&nbsp;&nbsp;&nbsp;'+data[i].discussTime+'</p></li>';
+                    }
+                    console.log(str);
+                    $('.newsDiscuss_list').html(str);
+                },
+                error:function () {
+                    console.log("请求错误");
+                }
+            })
+        }
+        getNewsDiscuss(page,newsId[1]);
+        var getPage = function (total) {
+            var count = total;
+            if(count===1){
+                $('.active a').text(1);
+            }else if(count===2){
+                $('.page_first a').text(1);
+                $('.active a').text(2)
+            }else if(count===3){
+                $('.page_first a').text(1);
+                $('.active a').text(2);
+                $(".page_last a").text(3);
+            }else if(page>=2&&count>=4){
+                if(page===count){
+                    $('.page_first a').text(page-2);
+                    $(".active a").text(page-1)
+                    $('.page_last a').text(page);
+                }else{
+                    $('.page_first a').text(page-1);
+                    $('.page_last a').text(page+1);
+                }
+
+            }else if(page===1){
+                $('.page_first a').text(1);
+                $('.active a').text(2);
+                $(".page_last a").text(3);
+            }
+        }
+        $('#previous').click(function () {
+            page=page-1;
+            getNewsDiscuss(page,newsId[1]);
+
+        })
+        $('#next').click(function () {
+            page=page+1;
+            getNewsDiscuss(page,newsId[1]);
+        })
+        $('.pageNation ul li').click(function () {
+            page = parseInt(this.innerText);
+            getNewsDiscuss(page,newsId[1]);
+        })
+
+        $('#goSubmit').click(function () {
+            var discuss=$("#discuss").val();
+            $.ajax({
+                url: "http://localhost:8081/news/setDiscuss",
+                type: "post",
+                data:{
+                    "discuss":discuss,
+                    "id":newsId[1]
+                },
+                success:function (res) {
+                    console.log(res);
+                    if (res === 1) {
+                        alert('发表成功!');
+                        getNewsDiscuss(1,newsId[1]);
+                    } else {
+                        alert('发表失败!');
+                    }
+                },
+                error:function () {
+                    //返回上个浏览页面处理。
+                    alert("你没有权限访问哦！点击确定返回到上一级！");
+                    window.history.back(-1);
+                    console.log(res);
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

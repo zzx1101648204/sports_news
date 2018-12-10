@@ -1,0 +1,257 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<style>a{TEXT-DECORATION:none}</style>-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">-->
+<!--<title>注册</title>-->
+<!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+<!--<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--<link rel="stylesheet" type="text/css" href="../static/css/Register.css">-->
+<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="h">-->
+<!--<a href="news.html">首页</a>-->
+<!--<a href="log.html">登录</a>-->
+<!--</div>-->
+<!--<div class="right">-->
+<!--<div class="all">-->
+<!--<div class="welcome">-->
+<!--<p>欢迎注册心悦网</p>-->
+<!--</div >-->
+
+<!--<div class="in">-->
+<!--<input id="userName" class="zh" type="text" placeholder="账号">-->
+<!--<input id="password" class="pa" type="password" placeholder="密码">-->
+<!--<input id="isPassword" class="pa" type="password" placeholder="确认密码">-->
+<!--<input class="re" onclick="register()" type="submit" value="立即注册">-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="carousel slide" id="myCarousel">-->
+<!--<ol class="carousel-indicators">-->
+<!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+<!--<li data-target="#myCarousel" data-slide-to="1"></li>-->
+<!--<li data-target="#myCarousel" data-slide-to="2"></li>-->
+<!--</ol>-->
+<!--<div class="carousel-inner">-->
+<!--<div class="item active">-->
+<!--<img src="../static/images/q1.jpg" alt="First slide">-->
+<!--</div>-->
+<!--<div class="item">-->
+<!--<img src="../static/images/q2.jpg" alt="Second slide">-->
+<!--</div>-->
+<!--<div class="item">-->
+<!--<img src="../static/images/q3.jpg" alt="Third slide">-->
+<!--</div>-->
+<!--</div>-->
+<!--<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">-->
+<!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
+<!--<span class="sr-only">Previous</span>-->
+<!--</a>-->
+<!--<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">-->
+<!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+<!--<span class="sr-only">Next</span>-->
+<!--</a>-->
+<!--</div>-->
+
+
+<!--<div class="foot">-->
+<!--<div class="first">-->
+<!--<p>心悦客服</p>-->
+<!--<div class="f">-->
+<!--<p>热线:18628395678</p>-->
+<!--<p>邮箱:123456789@qq.com</p>-->
+<!--<p>qq  :1101625235</p>-->
+<!--<p>微信:123456789</p>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="second">-->
+<!--<p>关于心悦</p>-->
+<!--<div class="s">-->
+<!--<p><a href="/templates/contact.html">关于我们</a></p>-->
+<!--<p><a href="/templates/contact.html">免责声明</a></p>-->
+<!--<p><a href="/templates/contact.html">用户协议</a></p>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="third" >-->
+<!--<div  class="w">-->
+<!--<img style="height:140px;width: 140px" src="../static/images/shop/wei.jpg">-->
+<!--<span>公众号</span>-->
+<!--</div>-->
+<!--<div class="x">-->
+<!--<img style="height:140px;width: 140px" src="../static/images/shop/xin.jpg">-->
+<!--<span>微信群</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr>-->
+<!--<div class="bu">-->
+<!--<img src="../static/images/shop/bu.png">-->
+<!--</div>-->
+
+<!--<script type="text/javascript">-->
+<!--function register() {-->
+<!--var userName=$("#userName").val();-->
+<!--var password=$("#password").val();-->
+<!--var isPassword=$("#isPassword").val();-->
+<!--if(password==isPassword){-->
+<!--$.ajax(-->
+<!--{-->
+<!--url: "http://123.207.231.159:8081/user/registry",-->
+<!--type: "post",-->
+<!--data: {-->
+<!--"userName": userName,-->
+<!--"password": password,-->
+<!--},-->
+<!--success: function (res) {-->
+<!--if (res == 1) {-->
+<!--location.href = "http://123.207.231.159:8081/log.html"-->
+<!--} else {-->
+<!--alert("注册失败!");-->
+<!--}-->
+<!--},-->
+<!--error: function () {}-->
+<!--})-->
+<!--}else {-->
+<!--alert("两次输入的密码不一致!");-->
+<!--}-->
+
+
+<!--}-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>注册</title>
+    <style>a {
+        TEXT-DECORATION: none
+    }</style>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../static/plugin/uEditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../static/plugin/uEditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../static/plugin/uEditor/lang/zh-cn/zh-cn.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/Registers.css">
+
+</head>
+<body>
+<div class="bg">
+    <div class="head">
+        <a href="news.html">首页</a>
+        <a href="log.html">登录</a>
+    </div>
+</div>
+<div class="p">
+    <div class="bod">
+        <div class="welcome">
+            <p>欢迎注册心悦网</p>
+        </div>
+        <div class="in">
+            <input id="phone" class="shouji" type="text" placeholder="手机号">
+            <input class="huoqu" onclick="getCode()" type="submit" value="点击获取">
+            <input id="obj" class="yz" type="text" placeholder="验证码">
+            <input id="userName" class="zh" type="text" placeholder="账号">
+            <input id="password" class="pa" type="password" placeholder="密码">
+            <input id="isPassword" class="pa" type="password" placeholder="确认密码">
+            <input class="re" onclick="register()" type="submit" value="立即注册">
+        </div>
+    </div>
+
+    <div class="foot">
+        <div class="first">
+            <p>心悦客服</p>
+            <div class="f">
+                <p>热线:18628395678</p>
+                <p>邮箱:123456789@qq.com</p>
+                <p>qq :1101625235</p>
+                <p>微信:123456789</p>
+            </div>
+        </div>
+        <div class="second">
+            <p>关于心悦</p>
+            <div class="s">
+                <p><a href="/templates/contact.html">关于我们</a></p>
+                <p><a href="/templates/contact.html">免责声明</a></p>
+                <p><a href="/templates/contact.html">用户协议</a></p>
+            </div>
+        </div>
+        <div class="third">
+            <div class="w">
+                <img style="height:140px;width: 140px" src="../static/images/shop/wei.jpg">
+                <span>公众号</span>
+            </div>
+            <div class="x">
+                <img style="height:140px;width: 140px" src="../static/images/shop/xin.jpg">
+                <span>微信群</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bu">
+    <img src="../static/images/shop/bu.png">
+</div>
+
+</body>
+<script type="text/javascript">
+    function register() {
+        var phone = $("#phone").val();
+        var obj=$("#obj").val();
+        var userName = $("#userName").val();
+        var password = $("#password").val();
+        var isPassword = $("#isPassword").val();
+        if (password == isPassword) {
+            $.ajax(
+                {
+                    url: "http://localhost:8081/user/registry",
+                    type: "post",
+                    data: {
+                        "phone":phone,
+                        "objs":obj,
+                        "userName": userName,
+                        "password": password,
+                    },
+                    success: function (res) {
+                        if (res == 1) {
+                            location.href = "http://localhost:8081/log.html"
+                        } else {
+                            alert("注册失败!");
+                        }
+                    },
+                    error: function () {
+                    }
+                })
+        } else {
+            alert("两次输入的密码不一致!");
+        }
+    }
+    function getCode() {
+        var phone = $("#phone").val();
+            $.ajax(
+                {
+                    url: "http://localhost:8081/user/check",
+                    type: "post",
+                    data: {
+                        "phone":phone,
+                    },
+                    success: function (res) {
+                        console.log(res)
+                        alert("获取成功！")
+                    },
+                    error: function () {
+                    }
+                })
+
+    }
+
+</script>
+</html>

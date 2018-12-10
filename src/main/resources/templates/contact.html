@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+
+    <title>关于我们</title>
+    <style>a{TEXT-DECORATION:none}</style>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../static/plugin/uEditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../static/plugin/uEditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="../static/plugin/uEditor/lang/zh-cn/zh-cn.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/Contact.css">
+</head>
+<body>
+<div  class="right">
+    <div class="lr"  >
+        <a href="log.html">登录</a>
+        <a href="register.html">注册</a>
+    </div>
+
+    <div class="mo"  >
+        <a href="news.html">新闻</a>
+        <a href="forum.html">论坛</a>
+        <a href="contact.html">联系我们</a>
+    </div>
+</div>
+<div class="explain">
+    <h1>心悦网络科技</h1>
+    <p>  本网站为新闻浏览网站,我们每日更新最新新闻,您可以对其进行阅读浏览,<br>可以对相应新闻进行评论.您也可以发表论坛,评论别人的说说.</p>
+    <br>
+    <br>
+    <p>心悦客服:</p>
+    <p>邮箱:1101648204@qq.com</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1161260131@qq.com</p>
+    <br>
+    <br>
+    <p>意见反馈:</p>
+</div>
+<div class="SetDiscuss">
+    <textarea id="content" rows="5" cols="130">说点什么吧?</textarea>
+    <input onclick="setSuggestion()" type="submit" value="发表">
+</div>
+
+<div class="foot">
+    <div class="first">
+        <p>心悦客服</p>
+        <div class="f">
+            <p>热线:18628395678</p>
+            <p>邮箱:123456789@qq.com</p>
+            <p>qq  :1101625235</p>
+            <p>微信:123456789</p>
+        </div>
+    </div>
+    <div class="second">
+        <p>关于心悦</p>
+        <div class="s">
+            <p><a href="contact.html">关于我们</a></p>
+            <p><a href="/templates/contact.html">免责声明</a></p>
+            <p><a href="/templates/contact.html">用户协议</a></p>
+        </div>
+    </div>
+    <div class="third" >
+        <div  class="w">
+            <img style="height:140px;width: 140px" src="../static/images/shop/wei.jpg">
+            <span>公众号</span>
+        </div>
+        <div class="x">
+            <img style="height:140px;width: 140px" src="../static/images/shop/xin.jpg">
+            <span>微信群</span>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="bu">
+    <img src="../static/images/shop/bu.png">
+</div>
+
+</body>
+<script type="text/javascript">
+    function setSuggestion() {
+      var content=$("#content").val();
+      if(content!=null) {
+          $.ajax({
+              url: "http://localhost:8081/suggestion/set",
+              type: "post",
+              data: {
+                  "content": content
+              },
+              success: function (res) {
+                  if (res == 1) {
+                      alert("发表成功!");
+                  } else {
+                      //返回上个浏览页面处理。
+                      alert("你没有权限访问哦！点击确定返回到上一级！");
+                      window.history.back(-1);
+                      console.log(res);
+                  }
+
+              },   error:function (res) {
+                  //返回上个浏览页面处理。
+                  alert("你没有权限访问哦！点击确定返回到上一级！");
+                  window.history.back(-1);
+                  console.log(res);
+              }
+          })
+      }else{
+          alert("内容不能为空!");
+      }
+    }
+
+</script>
+
+</html>
