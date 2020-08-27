@@ -31,7 +31,7 @@ public class OssService implements IOssService{
     public void ossUploader(HttpServletRequest request, HttpServletResponse response){
         String endpoint = "oss-cn-shenzhen.aliyuncs.com";
         String accessId = "LTAIUNlz4Cq219NR";
-        String accessKey = "smzNeRlzyXQ0pvDv4AG9E0BpsUYsmU";
+        String accessKey = "";
         String bucket = "tinelion-video";
         String dir = "myvideo/";
         String callBackURL = "/upload/callback";
